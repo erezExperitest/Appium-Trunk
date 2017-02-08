@@ -1,6 +1,4 @@
-import com.experitest.appium.SeeTestAndroidDriver;
 import com.experitest.appium.SeeTestIOSDriver;
-import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
 import org.junit.After;
@@ -31,16 +29,15 @@ public class RESETiOS {
         capabilities.setCapability("deviceName", "Ipad");
         capabilities.setCapability("bundleId", "com.experitest.ExperiBankO");
         capabilities.setCapability(MobileCapabilityType.FULL_RESET,true);
-//        capabilities.setCapability(MobileCapabilityType.NO_RESET,true);
+//        capabilities.setCapability(MobileCapabilityType.NO_RESET,false);
         driver = new SeeTestIOSDriver(new URL("http://127.0.0.1:8889/wd/hub"), capabilities);
     }
 
     @Test
     public void restart() throws Exception {
-//driver.launchApp();
-//        installEribank();
+driver.launchApp();
+        installEribank();
         org.junit.Assert.assertEquals(true,doPayment());
-            driver.resetApp();
         org.junit.Assert.assertEquals(true,chackForBalanceChange());
 
         Thread.sleep(1000);
